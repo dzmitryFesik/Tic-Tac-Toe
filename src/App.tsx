@@ -1,42 +1,14 @@
-import React, {FC, useCallback, useContext} from 'react';
+import React from 'react'
 
-import Cell from "./components/Cell";
-import {Board, CellValue} from "./interfaces/Game";
+import GameProvider from './providers/GameProvider'
+import Game from './containers/Game/Game'
 
-const Board = (props: BoardProps) => {
-  const {board} = useContext(GameContext)
-  
-  return board.map((value, index) => (
-    <Cell
-      key={index}
-      index={index}
-      value={value}
-      />
-    )
-  )
-}
-
-const GameContext = React.createContext({});
-
-const GameProvider = () => {
-
-}
-
-const Game = () => {
-  
+const App = () => {
   return (
     <GameProvider>
-      <Board />
+      <Game />
     </GameProvider>
   )
 }
 
-const App = () => {
-  return (
-    <div className="App">
-      <Game />
-    </div>
-  );
-}
-
-export default App;
+export default App
