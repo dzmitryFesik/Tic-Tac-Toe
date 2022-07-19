@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {FC, useCallback, useContext} from 'react';
 
-function App() {
+import Cell from "./components/Cell";
+import {Board, CellValue} from "./interfaces/Game";
+
+const Board = (props: BoardProps) => {
+  const {board} = useContext(GameContext)
+  
+  return board.map((value, index) => (
+    <Cell
+      key={index}
+      index={index}
+      value={value}
+      />
+    )
+  )
+}
+
+const GameContext = React.createContext({});
+
+const GameProvider = () => {
+
+}
+
+const Game = () => {
+  
+  return (
+    <GameProvider>
+      <Board />
+    </GameProvider>
+  )
+}
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Game />
     </div>
   );
 }
